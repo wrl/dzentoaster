@@ -75,8 +75,8 @@ void run_dzen() {
 		dzen_stdin = pipefd[1];
 		to_dzen = fdopen(dzen_stdin, "w");
 
+		setlinebuf(to_dzen);
 		fprintf(to_dzen, "^hide()\n");
-		fflush(to_dzen);
 	}
 }
 
@@ -165,8 +165,6 @@ void *server_thread(void *arg) {
 				}
 			}
 		}
-		
-		fflush(to_dzen);
 	}
 }
 
