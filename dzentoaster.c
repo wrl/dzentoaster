@@ -152,9 +152,12 @@ void *server_thread(void *arg) {
 			fprintf(to_dzen, "^tw()%s\n", s->formatstring);
 
 			if( slices_in_toaster == 1 ) {
-				fprintf(to_dzen, "^collapse()\n");
+				if( UNCOLLAPSE_AUTOMATICALLY )
+					fprintf(to_dzen, "^collapse()\n");
 			} else {
-				fprintf(to_dzen, "^uncollapse()\n");
+				if( UNCOLLAPSE_AUTOMATICALLY )
+					fprintf(to_dzen, "^uncollapse()\n");
+				
 				for( i = 0; i < (slice_quantity - slices_in_toaster); i++ ) 
 					fprintf(to_dzen, " \n");
 
